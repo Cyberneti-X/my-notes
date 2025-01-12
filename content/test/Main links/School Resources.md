@@ -1,5 +1,5 @@
 ---
-title: Go away weirdo
+title: School Resources
 draft: false
 tags:
 ---

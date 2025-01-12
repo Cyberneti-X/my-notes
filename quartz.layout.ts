@@ -23,6 +23,18 @@ export const defaultContentPageLayout: PageLayout = {
     Component.Search(),
     Component.Darkmode(),
     Component.DesktopOnly(Component.TableOfContents()),
+    Component.DesktopOnly(
+      Component.RecentNotes({
+        title: "Recent Waffles",
+        limit: 3,
+        filter: (f) =>
+          f.slug!.startsWith("Web/Waffles/") && f.slug! !== "index" && !f.frontmatter?.noindex,
+        sort: (f1, f2) =>
+          (f2.dates?.created.getTime() ?? Number.MAX_SAFE_INTEGER) -
+          (f1.dates?.created.getTime() ?? Number.MAX_SAFE_INTEGER),
+        linkToMore: "./tags/Waffle" as SimpleSlug,
+      }),
+    ),
   ],
   right: [Component.Graph(), Component.Backlinks()],
 }
